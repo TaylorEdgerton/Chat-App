@@ -1,0 +1,54 @@
+<!-- Top Heading Div-->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-sm">
+      <h1 class="text-center">Chat App</h1>
+    </div>
+</div>
+
+<!-- Heading Div-->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm">
+      <h2 class="text-center">Login</h2>
+    </div>
+</div>
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-md">
+      <form>
+        <!-- Email input -->
+        <div class="mx-auto" class="form-outline mb-4">
+          <!-- <label class="form-label" for="form2Example1">Email address</label> -->
+          <input [(ngModel)]="upwd.username" placeholder="username:" name ="username" type="username" id="username" class="form-control" />
+        </div>
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <!-- <label class="form-label" for="form2Example2">Password</label> -->
+          <input [(ngModel)]="upwd.pwd" placeholder ="Password:"name = "pwd" type="password" id="password" class="form-control" />
+        </div>
+        <!-- 2 column grid layout for inline styling -->
+        <div class="row mb-4">
+          <div class="col d-flex justify-content-center">
+          </div>
+        </div>
+        <!-- Submit button -->
+        <div class="containter">
+          <div class="row">
+            <div class="col align-self-start">
+              <button (click)="login()" type="button" class="btn btn-primary btn-block mb-4 mr-1">Sign in</button>
+            </div>
+            <div class="col align-self-end">
+              <!-- <button routerLink="newuser" type="button" class="btn btn-secondary btn-block mb-4">Create User</button> -->
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>

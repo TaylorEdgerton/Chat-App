@@ -1,0 +1,115 @@
+.row {
+    background-color: #fafafa;
+}
+
+.list-group{
+    max-height: 100px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.last{
+    position: sticky;
+}
+
+.chat-ul{
+    /* float:both; */
+    flex:1;
+    overflow-y:auto;
+    min-height:350px; 
+    max-height: 350px; 
+    width:75%;
+}
+.users-list{
+    float:right;
+    min-height:436px; 
+    max-height: 400px; 
+    width:25%;
+    border-right:0.5px solid grey;
+    border-bottom:0.5px solid grey;
+    border-radius: 0em 0em 0.5em 0em;
+    background-color: #fafafa;
+    box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+    flex:1;
+    overflow-y:auto;
+    
+    text-align: center;
+}
+.chat-li-div{
+    display:flex; 
+    align-items: flex-end; 
+    height:auto; 
+    border-radius: 1em;
+}
+.text-left{
+    float:left; 
+    width:auto; 
+    max-width:50%;
+}
+.chat-li-textright-div{
+    width:auto; 
+    height:auto; 
+    border-radius: 1em;
+}
+.chat-li-text-right{
+    margin-left:50%; 
+    float:right; 
+    background-color: #579ffb; 
+    color:white; 
+    width:auto; 
+    max-width:100%;
+}
+
+.chat-profile-img{
+    max-height: 50px; 
+    max-width: 50px;
+    border-radius:50%;
+}
+.chat-container{
+    float:left;
+    width:75%;
+    border:0.5px solid grey;
+    border-radius: 0em 0em 0em 0.5em;
+    background-color: #fafafa;
+    box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+.chat-heading{
+    background: #bdbdbd;
+    font-weight:bold;
+    text-align:center;
+    border:0.5px solid grey;
+    border-radius: 0.5em 0.5em 0em 0em;
+    box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+    
+}
+.msg-input-div{
+    width:auto;
+    background: #fafafa;
+    font-weight:bold;
+    text-align:center;
+    border-top:0.5px solid grey;
+    border-radius: 0em 0em 0.5em 0.5em ;
+    box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+.msg-input-form{
+    width:auto;
+}
+
+#messagecontent{
+    border:none;
+    margin:0.5em;
+    width:80%;
+    height:3em;
+    background: #bdbdbd;
+    justify-content: center;
+
+
+}
+.msg-submit{
+    height:3em;
+    margin: 0.5em;
+    border-radius: 0%;
+    justify-content: center;
+    
+}

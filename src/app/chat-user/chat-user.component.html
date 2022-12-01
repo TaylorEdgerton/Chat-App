@@ -1,0 +1,204 @@
+<!-- Heading -->
+<h1 class="text-center display-1">Chat App</h1>
+
+<!-- Top Menu -->
+<div class = "container mt-4">
+  <div class = "row">
+    <div class = "col-md-2">
+      <form>
+        <div class="form-group">
+      <!-- <p class="h5">Profile Pic</p> -->
+        <div *ngIf = "imagePath == ''; else showImage"><label for="uploadfile"><img class="img-thumbnail" src="http://localhost:3000\images\default.png"/></label></div>
+        <ng-template #showImage><label for="uploadfile"><img class="img-thumbnail" src="http://localhost:3000\images\{{imagePath}}"/></label></ng-template>
+          <input type = "file" style="display:none;" (change) = "fileSelected($event); fileUploaded()" class = "form-control"  name = "uploadfile" id="uploadfile"/>
+          <!-- <button (click)= "fileUploaded()" class="btn btn-primary" type="button" >Submit</button> -->
+        </div>
+      </form>
+    </div>
+    <div class = "col-md-6"><p class="h5">User Name: {{currentUser.username}}      Role: {{currentUser.role}}</p>
+    </div>
+    <div  *ngIf="currentUser.role == 'SuperAdmin'" class = "col-md-2">
+      <button type="button" routerLink = "/adminPanel" class="btn btn-sm btn-primary">Admin Panel
+      </button>
+    </div>
+    <div class = "col-md-1">
+      <button (click)="logout()" type="button" class="btn btn-sm btn-primary col-sm">Logout
+      </button>
+    </div>
+    <div *ngIf="currentUser.role == 'SuperAdmin'" class = "col-md-1">
+      <button routerLink="/newuser" type="button" class="btn btn-sm btn-primary col-sm">Add User  
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="container">
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Groups</h4>
+            <select (change) = "showGroup($event)" class="form-select" aria-label="Group Select">
+              <option selected>Select a Server
+              </option>
+                    <option *ngFor = "let group of groups; index as i" [value]="i" name="groups">{{group.groupname}}
+                    </option>
+            </select> 
+    </div>
+    <div class="col-md-4">
+      <h4>Channels</h4>
+        <div *ngIf = "selectedGroupShowChannels !== undefined ">
+          <select (change) = "showChannel($event)" class="form-select" aria-label="Channel Select">
+            <option selected>Select a Channel
+            </option>
+                  <option *ngFor = "let channels of selectedGroupShowChannels.channels; index as j" [value]="j" name="channels">{{channels.channelNum}}
+                  </option>
+          </select> 
+        </div>
+    </div>    
+      <div class="col-md-4">
+      </div>
+  </div>
+</div>
+<div class="cointainer mt-5">
+  <div class=row >
+    <div class="col-md-12">
+      <div class="">
+        <div class = "chat-heading">Chat Conversation
+        </div>
+        <div class="users-list">
+          <h3>Users</h3>
+          <div *ngIf="selectedChannelChatUsers !== undefined">
+            <ul style="list-style: none; margin:0; padding:0;">
+              <div>
+                <div>
+                  <div *ngFor = "let users of selectedChannelChatUsers.usernames">
+                      <li>
+                        <!-- <img style = "max-height: 50px; max-width: 50px;"class="img-thumbnail" src= "http://localhost:3000\images\{{users.profilePic}}"> -->
+                        {{users}}</li>
+                </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div class = "chat-container">
+            <ul #scrollMe  class="list-group chat-ul">
+              <ng-container *ngIf="selectedChannelChatUsers !== undefined">
+              <!-- <ng-container *ngFor="let channels of selectedChannelChatUsers.channels"> -->
+                <div  *ngFor="let m of selectedChannelChatUsers.messageHistory; let last = last">
+                  <div *ngIf="m.fromId===currentUser.id; else textright">
+                    <div class="chat-li-div">
+                      <li class="text-left list-group-item" >
+                        <img class="img-thumbnail chat-profile-img" src="{{BACKEND_IMG_URL}}{{m.profilePic}}">{{m.username}} {{m.date}} <br> {{m.message}} {{last ? scrollToBottom() : ''}}
+                      </li>
+                    </div>
+                  </div>
+                  <ng-template #textright>
+                    <div class = "chat-li-textright-div">
+                      <li class="chat-li-text-right list-group-item" >
+                        <img class="img-thumbnail chat-profile-img" src="{{BACKEND_IMG_URL}}{{m.profilePic}}">{{m.username}} {{m.date}} <br> {{m.message}} {{last ? scrollToBottom() : ''}}
+                      </li>
+                    </div>
+                  </ng-template>
+                </div>
+              <!-- </ng-container> -->
+              </ng-container>
+            </ul>
+          <!-- <ul #scrollMe style = "overflow:scroll; height:1400;"  class="list-group"><div  *ngFor="let m of messages; let last = last"><li class="list-group-item" ><img style = "max-height: 50px; max-width: 50px;"class="img-thumbnail" src="{{BACKEND_IMG_URL}}{{m.profilePic}}">{{m.username}} {{m.date}} {{m.message}} {{last ? scrollToBottom() : ''}}</li></div></ul>
+          -->
+          <form class="msg-input-form">
+            <div class="form-group mt-3 msg-input-div">
+                <input [(ngModel)]="messagecontent.message" placeholder = "Enter Message" type="text"  name="messagecontent" id="messagecontent" class="" />
+                <button (click)="chat()" class="msg-submit btn btn-success">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-2">
+        
+      </div>
+      <div class="col-md-6">
+        
+      </div>
+      <div class="col-md-2">
+        
+      </div>
+    </div>
+  </div>
+<div class="container">
+    <div class="row"></div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--------------------------------  ADMIN PANEL GroupAdmin----------------------->
+<!-- 
+<div *ngIf="currentUser.role == 'GroupAdmin'" class="container">
+  <h3 class="text-center Display-3">Admin Panel
+  </h3>
+  <div class="row" style="height:200px">
+    <div class="col-md-4" >
+      <h3>All Groups
+      </h3>
+      <ul *ngFor = "let group of allGroups" class="list-unstyled mx-auto">
+        <li style="height:20%">{{group.groupname}} <span style = "height:auto; width:auto"class="btn btn-sm btn-danger" ><i class="fa fa-trash" (click)="deleteGroup(group.groupname)">Delete</i></span>
+        </li>
+
+          <p>Channels</p> <span style = "height:auto; width:auto"class="btn btn-sm btn-danger" ><i class="fa fa-trash" >Add Channel</i></span>
+          <div *ngFor ="let channels of group.channels">
+
+
+                
+                <li style="height:20%">Channel:{{channels.channelNum}} <span style = "height:auto; width:auto"class="btn btn-sm btn-danger" ><i class="fa fa-trash">Delete</i></span>
+                </li>
+
+          </div>
+
+      </ul>
+    </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <form>
+            <label  for="createGroup">Create Group</label>
+            <input placeholder="Group Name:"type="text" class="form-control" [(ngModel)]="newGroupName" name="createGroup" id="createGroup">
+            <button class="btn btn-primary" type="submit" for="createGroup" (click)="createGroup(newGroupName)">Create</button>
+          </form>
+        </div>
+        <div class="form-group">
+          <form>
+            <label  for="createGroup">Add User to Group</label>
+            <input type="text" class="form-control" [(ngModel)]="autgGroupName" name="autg" id="groupname" placeholder="Group Name:">
+            <input type="text" class="form-control" [(ngModel)]="autgUserName" name="autg" id="username" placeholder="User Name:">
+            <button class="btn btn-primary" type="submit" for="autg" (click)="addUserToGroup(autgGroupName, autgUserName)">Add</button>
+          </form>
+        </div>
+      </div>
+    <div class="col-md-4">
+      <h2>Users</h2>
+      <ul class="list-unstyled mx-auto"><li *ngFor = "let user of allUsers; let i = index">{{user.username}} </li></ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    
+  </div>
+</div>
+
+ -->

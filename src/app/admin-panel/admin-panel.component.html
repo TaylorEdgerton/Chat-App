@@ -1,0 +1,55 @@
+<!--------------------------------  ADMIN PANEL SUPERADMIN----------------------->
+
+<div *ngIf="currentUser.role == 'SuperAdmin'" class="container">
+    <h3 class="text-center Display-3">Admin Panel
+    </h3>
+    <div class="row" style="height:200px">
+      <div class="col-md-4" >
+        <h3>All Groups
+        </h3>
+        <ul *ngFor = "let group of allGroups" class="list-unstyled mx-auto">
+          <li style="height:20%">{{group.groupname}} <span style = "height:auto; width:auto"class="btn btn-sm btn-danger" ><i class="fa fa-trash" (click)="deleteGroup(group.groupname)">Delete</i></span>
+          </li>
+          <!-- <div *ngFor="let group of allGroups"> -->
+            <p>Channels</p> <span style = "height:auto; width:auto"class="btn btn-sm btn-danger" ><i class="fa fa-trash" >Add Channel</i></span>
+            <div *ngFor ="let channels of group.channels">
+              <!-- <div *ngFor ="let channelnum of channels.channelnum"> -->
+  
+                  
+                  <li style="height:20%">Channel:{{channels.channelNum}} <span style = "height:auto; width:auto"class="btn btn-sm btn-danger" ><i class="fa fa-trash">Delete</i></span>
+                  </li>
+  
+              <!-- </div> -->
+            </div>
+          <!-- </div> -->
+        </ul>
+      </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <form>
+              <label  for="createGroup">Create Group</label>
+              <input placeholder="Group Name:"type="text" class="form-control" [(ngModel)]="newGroupName" name="createGroup" id="createGroup">
+              <button class="btn btn-primary" type="submit" for="createGroup" (click)="createGroup(newGroupName)">Create</button>
+            </form>
+          </div>
+          <div class="form-group">
+            <!-- <form>
+              <label  for="createGroup">Add User to Group</label>
+              <input type="text" class="form-control" [(ngModel)]="autgGroupName" name="autg" id="groupname" placeholder="Group Name:">
+              <input type="text" class="form-control" [(ngModel)]="autgUserName" name="autg" id="username" placeholder="User Name:">
+              <button class="btn btn-primary" type="submit" for="autg" (click)="addUserToGroup(autgGroupName, autgUserName)">Add</button>
+            </form> -->
+          </div>
+        </div>
+      <div class="col-md-4">
+        <h2>Users</h2>
+        <ul class="list-unstyled mx-auto"><li *ngFor = "let user of allUsers; let i = index">{{user.username}} <button (click)="deleteUser(i)" type="button" class="btn btn-xs btn-danger col-sm">Del</button></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      
+    </div>
+  </div>
+  
