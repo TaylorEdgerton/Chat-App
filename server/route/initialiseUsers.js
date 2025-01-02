@@ -1,15 +1,13 @@
-const client = require('mongodb').MongoClient;
+const Client = require('mongodb').MongoClient;
 const url = "mongodb://127.0.0.1:27017"
 const dbName = 'chatdb';
 const colName = "users"
 // const client = new MongoClient(url)
 
-client.connect(url, function(err, client) {
-  if (err){
-    return console.log(err)
-  }
-  console.log("Connected successfully to Server")
+const client = new Client(url)
 
+
+async function run(){
   const db = client.db(dbName)
   db.createCollection("users", function(err, res) {
     if (err) throw err;
@@ -42,4 +40,5 @@ client.connect(url, function(err, client) {
   //   console.log("data3 created");
   // });
 
-})
+}
+run().catch(console.dir)

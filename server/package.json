@@ -20,9 +20,12 @@
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
-    "express": "^4.18.1",
+    "express": "^4.21.2",
     "formidable": "^2.0.1",
-    "mongodb": "^4.10.0"
+    "mongodb": "^4.10.0",
+    "node-rtsp-stream": "^0.0.9",
+    "node-rtsp-stream-es6": "^1.0.7",
+    "rtsp-relay": "^1.9.0"
   },
   "devDependencies": {
     "mocha": "^10.0.0"

@@ -1,14 +1,13 @@
-const client = require('mongodb').MongoClient;
+const Client = require('mongodb');
 const url = "mongodb://127.0.0.1:27017"
 const dbName = 'chatdb';
 const colName = "groups"
-// const client = new MongoClient(url)
 
-client.connect(url, function(err, client) {
-  if (err){
-    return console.log(err)
-  }
-  console.log("Connected successfully to Server")
+
+const client = new Client.MongoClient(url)
+
+
+async function run() {
 
   const db = client.db(dbName)
   db.createCollection("groups", function(err, res) {
@@ -36,6 +35,15 @@ client.connect(url, function(err, client) {
     if (err) throw err;
     console.log("data3 for groups created");
   });
+
+}
+run().catch(console.dir)
+// client.connect(url, function(err, client) {
+//   if (err){
+//     return console.log(err)
+//   }
+//   console.log("Connected successfully to Server")
+
   // db.collection(colName).insertOne(data2, function(err, res) {
   //   if (err) throw err;
   //   console.log("data2 created");
@@ -46,4 +54,3 @@ client.connect(url, function(err, client) {
   //   console.log("data3 created");
   // });
 
-})
